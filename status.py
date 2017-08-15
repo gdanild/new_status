@@ -2,9 +2,14 @@ import vk
 import random
 import time
 import logging
+
+login = test #enter your login
+pass = test #enter your pass
+sec = 10 #enter what time is update your status
+
 logging.basicConfig(level = logging.ERROR, filename = 'mylog.log')
 session = vk.Session()
-session = vk.AuthSession('5001234', "89999696689", "PoPcorN698h", scope='wall, users, status')
+session = vk.AuthSession('5001234', login, pass, scope='wall, users, status')
 vk_api = vk.API(session)
 api = vk.API(session)
 resp = vk_api.wall.get(owner_id = "-35029664", count = "100", filter = "owner")
@@ -20,6 +25,6 @@ while True:
     a = '"' + a + '" - ' + elo
     print a
     logging.critical(a)
-    # vk_api.status.set(text = a)
-    time.sleep(5)
+    vk_api.status.set(text = a)
+    time.sleep(sec)
 
